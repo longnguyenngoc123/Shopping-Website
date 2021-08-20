@@ -1,0 +1,8 @@
+{% for user in User  %}
+    <p>{{user.username}}</p>
+    <p>{{ user.email }}</p>
+    <p> {{ user.id }}</p>
+     <a href="delete/{{ user.id }}"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit">Delete<i class="fa fa-edit"></i></button></a>
+     <a href="edit/{{ user.id }}"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit">Edit<i class="fa fa-edit"></i></button></a>
+{% endfor %}
+<a href="{% url 'emp' %}">Add user</a>

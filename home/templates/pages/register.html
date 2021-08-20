@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    body, html 
+    {
+        height: 100%;
+        margin: 0;
+    }
+    .bg
+    {
+        background: url("/static/images/back.jpg");
+        height: 100%; 
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: blur(8px);
+    }
+    .form
+    {
+        height: 500px;
+        width: 1000px;
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        background: #fff;
+        display: flex;
+    }
+    .form .right
+    {
+        width:50%;
+        padding-left:30px;
+        background-color: #d2dae2;
+    }
+    .form .left
+    {
+        width:50%;
+
+    }
+    .form .left img
+    {
+        width: 100%;
+        height: 100%;
+    }
+    .form input
+    {
+        width: 80%;
+        padding: 10px 10px;
+        margin-top :10px;
+        border: 1px solid #d2dae2  ;
+        border-bottom: 1px solid #1e272e;
+        background-color: #d2dae2;
+    }
+    input:focus, textarea:focus, select:focus{
+        outline: none;
+    }
+    .form button
+    {
+        padding: 10px 30px;
+        margin-top: 10px;
+        margin-left: 160px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+    
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="bg"> </div>
+        <div class="form">
+            <div class="left">
+                <img src="{% static 'images/login.jpg' %}" alt="food">
+            </div>
+            <div class="right">
+                <h1>Sign Up</h1>
+                <form action='.' method='POST'>
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit" value="Sign in" class="btn btn-success">Sign in</button>
+                    <center style="margin-right: 50px; margin-top: 20px">If you have an account, then please login here</center>
+                </form>
+                <a href="{% url 'login' %}"><button type="button" class="btn btn-primary">Log In</button></a>
+            </div>
+        </div>
+</body>
+</html>

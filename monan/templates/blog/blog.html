@@ -1,0 +1,139 @@
+{% extends "pages/home.html" %}
+{% block title  %}Blog{% endblock  %}
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<style>
+    #menu .sub
+    {
+        display:flex;
+        position: relative;
+    }
+    #menu .ded
+    {
+        position: absolute;
+        top: 100%;
+        left: 43%;
+    }
+    #menu .sub .sub1
+    {
+        text-align :center; 
+        padding: 0 20px;
+        padding-top: 50px;
+    }
+    #menu .sub .sub1 img
+    {
+        width: 200px; 
+        height: 200px ; 
+        box-shadow: 10px 10px #a4b0be;
+    }
+    #menu .sub .sub1 h4
+    {
+        padding-top: 10px;
+        font-size: 25px;
+        text-align: center;
+        font-family: 'Dancing Script', cursive;
+    }
+    #menu .sub .sub1 a
+    {
+        color: black;
+    }
+    #menu .sub .sub2 h4
+    {
+        margin-left: 84px;
+        font-family: "Times New Roman", Times, serif;
+        font-weight:bold;
+    }
+    #menu .sub .sub2 h5
+    {
+        font-weight: bold;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 20px;
+    }
+    .add
+    {
+        display: flex;
+    }
+</style>
+   
+    <div class="sub">
+        {% for post in Post %}
+            <div class="sub1">
+                {% if post.image %}
+                    <img src="{{post.image.url}}" alt="food">
+                    <h4><a href="/monan/{{post.id}}">{{post.title}}</a></h4>
+                {% else %}
+                    <a href="/monan/{{post.id}}">{{post.title}}</a></h4>
+                {% endif %}
+                <div class="sub2">
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{post.id}}">More information</button><br>
+                    <a href="/product/{{ post.id }}"><button type="button" class="btn btn-success">Read more</button></a>
+                    <div class="modal fade" id="myModal{{post.id}}" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{post.title}}</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <p>*Date been out: {{post.date}}</p>
+                                    <h5>About the food</h5>
+                                    <p>{{post.body}}</p>
+                                    <h3 style="font-family: 'Dancing Script', cursive;">Price: {{post.price}} VND</h3>
+                                    </div>
+                                    <div class="modal-footer">
+                                        {% if user.is_superuser %}
+                                            <div style="margin-right: 130px;">
+                                                <ul class="list-inline mr-100">
+                                                    <li class="list-inline-item">
+                                                        <a href="/edit/{{ post.id }}"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="/delete/{{ post.id }}"><button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            {% else %}
+                                                <a href="{% url 'update_cart' post.id %}"><button style="margin-right: 135px;" type="button" class="btn btn-success"><i class='fas fa-shopping-cart'></i></button></a>
+                                        {% endif %}
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        {% endfor %}   
+         {% if user.is_superuser %}
+        <div class="add">
+            <a href="/emp"><button class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Add"><i class="fa fa-table"></i></button></a>
+            <p></p>
+        </div>
+    {% endif %}
+    </div>
+    <div class="ded">
+        {% if page_obj.has_other_pages %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="{{request.path}}?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in page_obj.paginator.page_range %}
+                {% if page_obj.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li><a href="{{request.path}}?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+        </ul>
+   </div>
+{% endif %}
+{% endblock  %}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Edit</title>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        
+        .editform
+        {
+            margin-left:550px;
+           
+            width: 30%  ;
+        }
+        .edit-form input
+        {
+            width: 87%;
+            border: 2px solid #fff;
+        }
+         .edit-form textarea
+        {
+            border: 2px solid #fff;
+        }
+    </style>
+</head>  
+<body> 
+<form method="POST" class="editform" enctype="multipart/form-data" action="/update/{{post.id}}">  
+        {% csrf_token %}  
+    <div class="container">  
+<br>  
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <h3>Update Food</h3>  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Food Name:</label>  
+    <div class="col-sm-4">  
+        <input type="text" class="form-control" name="title" required maxlength="20" value="{{ post.title }}"/>  
+    </div>
+    
+  </div>  
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Food Description:</label>  
+    <div class="col-sm-4">  
+        <textarea type="text" class="form-control" name="body" required maxlength="100" value="{{ post.body }}"></textarea>
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Food Date:</label>  
+    <div class="col-sm-4">  
+        <input type="datetime-local"class="form-control" name="date" required maxlength="254" value="{{ post.date }}" />  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Food Price:</label>  
+    <div class="col-sm-4">  
+        <input type="text" class="form-control" name="price"required maxlength="15" value="{{ post.price }}" />  
+    </div>  
+  </div>
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Food Image:</label>  
+    <div class="col-sm-4">  
+          <input  type="file" name="image" accept="image/*">
+
+    </div>  
+  </div>      
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-success">Update</button>  
+    </div>  
+  </div>  
+    </div>  
+</form>  
+</body>  
+</html>  

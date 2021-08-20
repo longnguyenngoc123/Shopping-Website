@@ -1,0 +1,7 @@
+    <form class="profile-form" action="" method="POST" enctype="multipart/form-data">
+        <div class="form">
+            {% csrf_token %}
+            <center><h1>Update your profile</h1></center>
+            {{ u_form.as_p }}
+            <center><button class="btn btn-primary">Update</button></center>
+        </form>

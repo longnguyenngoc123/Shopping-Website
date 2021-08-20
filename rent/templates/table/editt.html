@@ -1,0 +1,63 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    {% load static %}
+    <meta charset="UTF-8">  
+    <title>Update</title> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
+     <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}" media="screen"/>
+</head>  
+<body>  
+
+<div class="bg"></div>
+<div class="left"></div>
+<form method="POST" class="post-form1" action="/rent/update/{{table.id}}">  
+        {% csrf_token %}  
+    <div class="container">  
+<br>  
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <h3>Update Details</h3>  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Customer Name:</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="name" id="id_eid" required maxlength="20" value="{{ table.name}}"/>  
+    </div>  
+  </div>  
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Customer Email:</label>  
+    <div class="col-sm-4">  
+        <input type="email" name="email" id="id_ename" required maxlength="100" value="{{ table.email }}" />  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Customer Address:</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="address" id="id_eemail" required maxlength="254" value="{{ table.address }}" />  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Level of luxury:</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="level" id="id_econtact" required maxlength="15" value="{{ table.level }}" />  
+    </div>  
+  </div>  
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Phone Number:</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="phone" id="id_econtact" required maxlength="15" value="{{ table.phone }}" />  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-success">Update</button>  
+    </div>  
+  </div>  
+    </div>  
+</form>  
+</body>  
+</html>  

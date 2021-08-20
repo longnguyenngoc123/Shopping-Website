@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Doan.css' %}" media="screen"/>
+    <title>Document</title>
+    <style>
+        .table
+        {
+            border-color: 2px solid #fff;
+            margin-top: 30px;
+        }
+        #bar
+        {
+            background-color: rgb(28, 30, 31);
+        }
+        #bar .menu .nb
+        {
+            display: flex;
+            
+        }
+         #bar .menu .nb a
+         {
+            text-decoration: none;
+            color: #000;
+         }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; z-index: 20;width: 100%;" id="bar">
+        <a class="navbar-brand logo" href="#"><img src="{% static 'images/foodlogo.png' %}" alt="logo"></a>
+        <div class="collapse navbar-collapse menu" id="navbarNavAltMarkup">
+            <div class="navbar-nav nb">
+            
+            {% if user.is_superuser %}
+                <div class="profile">
+                    <a href="{% url 'profile' %}"><img src="{{ user.profile.image.url }}" alt="food"></a>
+                </div>
+                <a href="{% url 'profile' %}"><p class="nav-item nav-link">Welcome, Admin {{ user.profile.name }}  &ensp;</p></a>
+                <a href="{% url 'logout' %}" class="nav-item nav-link">Log out  &ensp;</a>
+            {% elif user.username %}
+                <div class="profile">
+                    <a href="{% url 'profile' %}"><img src="{{ user.profile.image.url }}" alt="food"></a>
+                </div>
+                <a href="{% url 'profile' %}"><p class="nav-item nav-link">Welcome, User {{ user.profile.name }}  &ensp;</p></a>
+                <a href="{% url 'logout' %}" class="nav-item nav-link">Log out  &ensp;</a>
+            {% else %}
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register  &ensp;</a>
+                <a href="{% url 'login' %}" class="nav-item nav-link">Log in  &ensp;</a>
+            {% endif %}
+                <a class="nav-item nav-link active" href="{% url 'monan' %}">Home  &ensp;</a>
+            {% if user.username %}
+                 <a class="nav-item nav-link" href="{% url 'giohang' %}">| &ensp;<i class='fas fa-shopping-cart' style="margin-left:10px; font-size:13px"></i></i></a>
+            {% endif %}        
+            </div>
+        </div>
+    </nav>
+ <div class='col-sm-8 col-sm-offset-2'>
+    <table class="table">
+         <center style="margin-top: 150px;"><h1>Your Order</h1></center>
+        {% if empty %}
+                <center><h1>{{ empty }}</h1></center>
+        {% else %}
+        <tr><td>Item</td><td>Price</td><td></td></tr>
+        {% for item in cart.product.all %}
+            <tr><td>{{ item }}</td><td>{{ item.price }} VND</td>
+            <td><a href="{% url 'delete_cart' item.id %}"><button type="button" class="btn btn-danger">Remove</button></a></td>
+           
+            
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td>Total: {{ cart.total }} VND</td>
+            <td></td>
+        </tr>
+    </table>
+    <center><button style="margin-top:100px" class="btn btn-success" onclick="myFunction()">Purchase</button></center>
+     {% endif %}
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function myFunction() {
+            swal({
+            title: "Successfully Purchase",
+            icon: "success",
+            text: "You have successfully purchase your order",
+            button: "OK"
+        }).then(function() {
+            window.location = 'monan';
+        });
+        }
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+.post-form .container
+{
+    top: 10%;
+    color: #fff;
+    position: absolute;
+    width: 40%;
+    height: 600px;
+    left: 60%;
+}
+.post-form .container input
+{
+    width: 150%;
+    padding: 0px 10px;
+    color: black    ;
+}
+.post-form .container button
+{
+    margin-top: 30px;
+    padding: 10px 160px;
+    border-radius: 25px;
+}
+.left
+{
+    background: url("/static/images/res2.jpg");
+    height: 100%; 
+    position: absolute;
+    top: 0;
+    width: 50%;
+    background-size: cover;
+}
+body, html 
+{
+    height: 100%;
+    margin: 0;
+}
+.bg
+{
+    background: url("/static/images/res3.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(8px);
+}
+.post-form1 .container
+{
+    top: 10%;
+    color: #fff;
+    position: absolute;
+    width: 40%;
+    height: 600px;
+    left: 60%;
+}
+.post-form1 .container button
+{
+    margin-top: 30px;
+    padding: 10px 160px;
+    border-radius: 25px;
+}
+.post-form1 .container input
+{
+    width: 180%;
+    padding: 5px 10px;
+    color: black    ;
+}

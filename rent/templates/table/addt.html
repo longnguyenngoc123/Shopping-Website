@@ -1,0 +1,66 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head> 
+    {% load static %}
+    <meta charset="UTF-8">  
+    <title>Add</title>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}" media="screen"/>
+</head>  
+<body>  
+<div class="bg"></div>
+<div>
+<div class="left">
+
+</div>
+<form method="POST" class="post-form" action="/rent/emp">  
+        {% csrf_token %}  
+    <div class="container">  
+<br>  
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <h3>Enter Details</h3>  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Name:</label>  
+    <div class="col-sm-4">  
+      {{ form.name }}  
+    </div>  
+  </div>  
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Email:</label>  
+    <div class="col-sm-4">  
+      {{ form.email }}  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Address:</label>  
+    <div class="col-sm-4">  
+      {{ form.address }}  
+    </div>  
+  </div> 
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Lux Level:</label>  
+    <div class="col-sm-4">  
+      {{ form.level }}  
+    </div>  
+  </div>
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Phone:</label>  
+    <div class="col-sm-4">  
+      {{ form.phone }}  
+    </div>  
+  </div>     
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-success">Submit</button>  
+    </div>  
+  </div>  
+    </div>  
+</form>
+</div>
+</body>  
+</html>  

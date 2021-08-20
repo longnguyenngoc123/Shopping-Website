@@ -1,0 +1,6 @@
+ <form action='.' method='POST'>
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit" value="Sign in" class="btn btn-success">Sign in</button>
+                    <center style="margin-right: 50px; margin-top: 20px">If you have an account, then please login here</center>
+                </form>
